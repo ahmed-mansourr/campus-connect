@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+
 class User extends Authenticatable implements JWTSubject
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -56,6 +57,24 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function subjects()
+{
+    return $this->belongsToMany(Subject::class, 'enrollments');
 }
+
+public function completedLessons()
+{
+    return $this->belongsToMany(Lesson::class, 'completed_lessons');
+}
+
+public function badges()
+{
+    return $this->hasMany(Badge::class);
+}
+
+}
+
+
 
 
