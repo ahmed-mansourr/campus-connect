@@ -11,9 +11,8 @@ class StudentDashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // dd(request()->headers->all());
         $user = auth()->user();
-        // dd($user);
+        
         $subjects = $user->subjects()->with('lessons')->get()->map(function ($subject) {
             return [
                 'id' => $subject->id,

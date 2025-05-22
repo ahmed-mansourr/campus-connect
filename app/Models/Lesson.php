@@ -8,11 +8,17 @@ class Lesson extends Model
 {
     protected $fillable = [
         'title',
-        'subject_id',
+        'course_id',
     ];
 
     public function quiz()
     {
         return $this->hasOne(Quiz::class);
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
 }
