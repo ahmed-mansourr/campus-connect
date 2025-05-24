@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\StudentDashboardController;
 use App\Http\Controllers\Api\SubjectController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\UserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login',    [AuthController::class, 'login']);
@@ -16,5 +17,6 @@ Route::get('/student/dashboard', [StudentDashboardController::class, 'index']);
 Route::apiResource('courses', CourseController::class);
 Route::apiResource('lessons', LessonController::class);
 Route::apiResource('subjects', SubjectController::class);
-
-
+Route::prefix('admin')->group(function () {
+    Route::apiResource('users', UserController::class);
+});
